@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Funny Place Locator</title>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" rel="stylesheet"/>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+	<link href='styles/default-styles.css' rel='stylesheet'/>
+	<script src="./src/loader.js" type="module"></script>
+</head>
+<body>
+<div id="map"></div>
+<div id="left">
+	<div id="geocoder" class="geocoder"></div>
+	<button id="randomWord">Get a random funny loaction!</button>
+	<button id="entry">Do something else!</button>
+</div>
+</body>
+</html>

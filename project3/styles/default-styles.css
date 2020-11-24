@@ -1,0 +1,51 @@
+#map{
+    width: 100vw;
+    height: 100vh;
+}
+
+.geocoder{
+    position: absolute;
+    z-index: 1;
+    width: 50%;
+    left: 50%;
+    margin-left: -25%;
+    top: 10px;
+}
+
+#randomWord, #entry{
+    position: absolute;
+    transition-duration: 0.2s;
+    width: 24.5%;
+    top: 52px;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: rgba(64, 64, 64, .75);
+    font-weight: bold;
+}
+
+#randomWord{
+    left: 50%;
+    margin-left: -25%;
+}
+
+#entry{
+    left: 50.5%;
+}
+
+#randomWord:hover, #entry:hover{
+    background-color: #4264fb;
+    color: #fff;
+}
+
+.mapboxgl-ctrl-geocoder{
+    min-width: 100%;
+}
+
+body{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
