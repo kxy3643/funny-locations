@@ -9,6 +9,8 @@
 
 	<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
 	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 	<link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" rel="stylesheet"/>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 	<link href='styles/default-styles.css' rel='stylesheet'/>
@@ -17,11 +19,19 @@
 	
 </head>
 <body>
-<div id="map"></div>
-<div id="left">
+<nav>
 	<div id="geocoder" class="geocoder"></div>
-	<button id="randomWord">Get a random funny location!</button>
+	<button id="randomWord">Random Funny Location!</button>
 	<button id="menu">Open Menu</button>
-</div>
+	<div id="buttonContainer">
+		<button class="menuItem" id="submitButton">Submit A Location!</button>
+		<button class="menuItem" id="count">Current # of Locations</button>
+		<button class="menuItem" id="darkMode">Toggle Map Style</button>
+	</div>
+</nav>
+<main id="map"></main>
+<footer>
+	<p>KeCheng Yu 2020</p>
+</footer>
 </body>
 </html>

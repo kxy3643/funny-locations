@@ -1,5 +1,3 @@
-import * as map from "./map.js";
-
 let database;
 
 function initFirebase(){
@@ -17,35 +15,26 @@ function initFirebase(){
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
-    // #1 - get a reference to the databse
     database = firebase.database();
-
-    let data = {
-        name: "Wabbit",
-    };
-
-    // #4 - send data, in this case we are adding it to the `scores` node
-    //ref.push(data);
 }
 
-function getWord(){
-    let list = [];
-    firebase.database().ref("location").on("value", dataGet, firebaseError);
-    function dataGet(data){
-        let obj = data.val();
+async function getWords(){
+    return await firebase.database().ref("location").once("value").then((snapshot) => {
+        let list = [];
+        let obj = snapshot.val();
         for(let key in obj)
         {
             list.push(obj[key].name);
         }
-        let index = Math.floor(Math.random() * list.length);
-        map.geocoder.query(list[index]);
-    }
-	
-    function firebaseError(error){
-        console.log(error);
-    }
-
-    
+        return list;
+    });
 }
 
-export {initFirebase, database, getWord}
+function submitData(value){
+    let data = {
+        name: `"${value}"`,
+    };
+    firebase.database().ref("location").push(data);
+}
+
+export {initFirebase, getWords, submitData}

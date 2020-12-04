@@ -1,6 +1,6 @@
 function downloadFile(url, callbackRef){
     const xhr = new XMLHttpRequest();
-
+    //https://www.purgomalum.com/
     xhr.onerror = (e) => console.log("error");
 
     xhr.onload = (e) => {

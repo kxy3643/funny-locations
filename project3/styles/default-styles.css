@@ -1,11 +1,12 @@
 #map{
-    width: 100vw;
+    width:  100vw;
     height: 100vh;
+    outline: none;
 }
 
 .geocoder{
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     width: 50%;
     left: 50%;
     margin-left: -25%;
@@ -14,31 +15,75 @@
 
 #randomWord, #menu{
     position: absolute;
+    z-index: 1;
     transition-duration: 0.2s;
     width: 24.5%;
     top: 52px;
     height: 32px;
     border: none;
     border-radius: 4px;
+    outline: none;
     background-color: #fff;
-    font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-family: "Open Sans";
     font-size: 15px;
     color: rgba(64, 64, 64, .75);
     font-weight: bold;
+    box-shadow: 1px 1px 5px grey;
+}
+
+#buttonContainer{
+    visibility: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 1;
+    flex-direction: column;
+    justify-content: center;
+    top: 100px;
+    margin-left: 50.5%;
+    position: relative;
+    transition-duration: .2s;  
+    transform: translate(0px,-200px);
+    opacity: 0;
+}
+
+.menuItem{
+    width: 49.5%;
+    top: 120px;
+    z-index: 1;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    transition-duration: 0.2s;
+    background-color: #fff;
+    color: rgba(64, 64, 64, .75);
+    font-family: "Open Sans";
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    box-shadow: 1px 1px 5px grey;
 }
 
 #randomWord{
     left: 50%;
     margin-left: -25%;
+    background-color: #4264fb;
+    color: #fff;
 }
 
 #menu{
     left: 50.5%;
+    
 }
 
-#randomWord:hover, #menu:hover{
+#menu:hover, .menuItem:hover{
     background-color: #4264fb;
     color: #fff;
+}
+
+#randomWord:hover{
+    background-color: #fff;
+    color: rgba(64, 64, 64, .75);
 }
 
 .mapboxgl-ctrl-geocoder{
@@ -48,4 +93,36 @@
 body{
     margin: 0 0 0 0;
     padding: 0 0 0 0;
+}
+
+main{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+nav{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 0;
+}
+
+footer{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    position: absolute;
+    bottom: 1%;
+    left: 45%;
+    font-size: small;
+    display: flex;
+    align-content: flex-end;
+    justify-content: center;
+}
+
+footer p{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    color: #fff;
+    font-family: "Open Sans";
+    font-weight: bold;
+    text-shadow: 2px 2px 1px grey;
 }
