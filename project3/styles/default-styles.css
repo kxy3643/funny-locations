@@ -12,7 +12,7 @@
     top: 10px;
 }
 
-#randomWord, #entry{
+#randomWord, #menu{
     position: absolute;
     transition-duration: 0.2s;
     width: 24.5%;
@@ -32,11 +32,11 @@
     margin-left: -25%;
 }
 
-#entry{
+#menu{
     left: 50.5%;
 }
 
-#randomWord:hover, #entry:hover{
+#randomWord:hover, #menu:hover{
     background-color: #4264fb;
     color: #fff;
 }

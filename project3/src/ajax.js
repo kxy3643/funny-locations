@@ -15,5 +15,13 @@ function downloadFile(url, callbackRef){
 
     xhr.send();
 }
+function locationLoaded(jsonString){
+    locations = JSON.parse(jsonString);
+    console.log(locations);
+
+    
+}
+
+//ajax.downloadFile(url,poiLoaded);
 
 export {downloadFile};
