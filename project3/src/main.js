@@ -16,6 +16,19 @@ let controls = Object.seal({
 });
 
 function setupUI(){
+	const storedMode = localStorage.getItem("controls.dark");
+	if (storedMode != undefined){
+		if(storedMode == "true"){controls.dark = true;}
+		else{controls.dark = false;}
+	}
+	if(controls.dark){
+		map.changeStyle('mapbox://styles/mapbox/dark-v10');
+	}
+	else{
+		map.changeStyle('mapbox://styles/mapbox/streets-v11');
+	}
+
+
 	let geocoderInput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
 	geocoderInput.classList.add("browser-default");
 	let geocoderSug = document.querySelector(".suggestions");
@@ -79,11 +92,13 @@ function setupUI(){
 		{
 			map.changeStyle('mapbox://styles/mapbox/streets-v11');
 			controls.dark = false;
+			localStorage.setItem("controls.dark", false);
 		}
 		else
 		{
 			map.changeStyle('mapbox://styles/mapbox/dark-v10');
 			controls.dark = true;
+			localStorage.setItem("controls.dark", true);
 		}
 	});
 
