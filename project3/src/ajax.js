@@ -6,8 +6,6 @@ function downloadFile(url, callbackRef){
     xhr.onload = (e) => {
         const headers = e.target.getAllResponseHeaders();
         const jsonString = e.target.response;
-        console.log(`headers = ${headers}`);
-        console.log(`jsonString = ${jsonString}`);
         callbackRef(jsonString);
     };
 
@@ -15,13 +13,5 @@ function downloadFile(url, callbackRef){
 
     xhr.send();
 }
-function locationLoaded(jsonString){
-    locations = JSON.parse(jsonString);
-    console.log(locations);
-
-    
-}
-
-//ajax.downloadFile(url,poiLoaded);
 
 export {downloadFile};

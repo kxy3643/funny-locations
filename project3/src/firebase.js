@@ -1,4 +1,5 @@
 let database;
+let number;
 
 function initFirebase(){
     let firebaseConfig = {
@@ -32,9 +33,9 @@ async function getWords(){
 
 function submitData(value){
     let data = {
-        name: `"${value}"`,
+        name: `${value}`,
     };
     firebase.database().ref("location").push(data);
 }
 
-export {initFirebase, getWords, submitData}
+export {initFirebase, getWords, submitData, number}

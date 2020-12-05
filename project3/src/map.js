@@ -20,7 +20,7 @@ function initMap(){
 			bearing: 0,
 			speed: 2.5,
 			curve: 1,
-			zoom: 18,
+			zoom: 17.5,
 		},
 		types: "address"
 	})

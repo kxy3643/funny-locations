@@ -16,6 +16,11 @@ let controls = Object.seal({
 });
 
 function setupUI(){
+	let geocoderInput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
+	geocoderInput.classList.add("browser-default");
+	let geocoderSug = document.querySelector(".suggestions");
+	geocoderSug.classList.add("browser-default");
+	
 	let menuButton = document.querySelector("#menu");
 	let buttons = document.querySelector("#buttonContainer");
 	menuButton.addEventListener('click', () => {
@@ -42,15 +47,32 @@ function setupUI(){
 		Promise.resolve(fb.getWords()).then((value)=>{
 			wordList = value;
 			let index = Math.floor(Math.random() * wordList.length);
-        	map.searchLocation(wordList[index]);
+			map.searchLocation(wordList[index]);
+			let countText = document.querySelector("#count");
+			countText.innerHTML = `Current # of Locations: ${wordList.length}`;
 		});
 	});
 
+	let Modalelem = document.querySelector('.modal');
+	let instance = M.Modal.init(Modalelem);
+	let modalContent = document.querySelector(".modal-content");
+	modalContent.style.padding = "24px 24px 0px 24px";
+	let modalConfirm = document.querySelector(".modal-footer");
+	modalConfirm.style.margin = "0px 0px 24px 0px"
+	
 	let submitButton = document.querySelector("#submitButton");
 	submitButton.addEventListener('click', () => {
-		
+		instance.open();
 	});
 
+	let submitButtonDatabase = document.querySelector("#submitButtonDatabase");
+	let submitInput = document.querySelector("#sumbitInput");
+	submitButtonDatabase.addEventListener('click', () => {
+		badWordChecker(submitInput.value);
+		//fb.submitData(submitInput.value);
+		submitInput.value = "";
+	});
+	
 	let darkButton = document.querySelector("#darkMode");
 	darkButton.addEventListener('click', () => {
 		if(controls.dark)
@@ -63,6 +85,41 @@ function setupUI(){
 			map.changeStyle('mapbox://styles/mapbox/dark-v10');
 			controls.dark = true;
 		}
+	});
+
+	updateCounter();
+}
+
+function badWordChecker(value){
+	let url = "https://www.purgomalum.com/service/json?text=";
+	url += value;
+
+	let parse;
+	function parsed(jsonString){
+		parse = JSON.parse(jsonString);
+		let stringCheck = parse.result;
+		if(stringCheck != undefined)
+		{
+			if(!stringCheck.includes("*"))
+			{
+				fb.submitData(value);
+				updateCounter();
+			}
+			else{
+				alert("PLEASE BE CIVIL!");
+			}
+		}
+	}
+
+	ajax.downloadFile(url,parsed);
+}
+
+function updateCounter()
+{
+	Promise.resolve(fb.getWords()).then((value)=>{
+		wordList = value;
+		let countText = document.querySelector("#count");
+		countText.innerHTML = `Current # of Locations: ${wordList.length}`;
 	});
 }
 

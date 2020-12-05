@@ -3,35 +3,54 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Funny Place Locator</title>
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	<!-- Firebase -->
 	<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
-
+	<!-- Vue -->
+	<script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+	<!-- Materialize -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<!-- Mapbox & Geocoder -->
 	<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
 	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 	<link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" rel="stylesheet"/>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+	<!-- YuLIB -->
 	<link href='styles/default-styles.css' rel='stylesheet'/>
-	
 	<script src="./src/loader.js" type="module"></script>
-	
 </head>
+
 <body>
-<nav>
-	<div id="geocoder" class="geocoder"></div>
-	<button id="randomWord">Random Funny Location!</button>
-	<button id="menu">Open Menu</button>
-	<div id="buttonContainer">
-		<button class="menuItem" id="submitButton">Submit A Location!</button>
-		<button class="menuItem" id="count">Current # of Locations</button>
-		<button class="menuItem" id="darkMode">Toggle Map Style</button>
-	</div>
-</nav>
-<main id="map"></main>
-<footer>
-	<p>KeCheng Yu 2020</p>
-</footer>
+	<nav>
+		<div id="geocoder" class="geocoder"></div>
+		<button id="randomWord">Random Funny Location!</button>
+		<button id="menu">Open Menu</button>
+		<div id="buttonContainer">
+			<button class="menuItem browser-default" id="darkMode">Toggle Map Style</button>
+			<button class="menuItem browser-default" id="submitButton" data-target="modal1" class="btn modal-trigger">Submit A Location!</button>
+			<button disabled class="menuItem browser-default" id="count">Current # of Locations</button>
+		</div>
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Got Suggestions?</h4>
+			  <input type="text" id="sumbitInput">
+			  <p id="warningText">Make sure it exist first and please be civil!</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="submitButtonDatabase">Submit</a>
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+	</nav>
+	<main id="map"></main>
+	<footer>
+		<p>KeCheng Yu 2020</p>
+	</footer>
 </body>
 </html>
