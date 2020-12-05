@@ -38,7 +38,7 @@ function submitData(value){
     let data = {
         name: `${value}`,
     };
-    database().ref("location").push(data);
+    database.ref("location").push(data);
 }
 
 export {initFirebase, getWords, submitData}
