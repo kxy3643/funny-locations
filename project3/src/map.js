@@ -1,6 +1,7 @@
 let map;
 let geocoder;
 
+//Init mapbox
 function initMap(){
 	mapboxgl.accessToken = 'pk.eyJ1Ijoia3h5MzY0MyIsImEiOiJja2htNnhyazEwNXJrMnFtM3dseXZobHo4In0.9wFd7wAqXOVrmTqeGOahVw';
 	map = new mapboxgl.Map({
@@ -11,6 +12,7 @@ function initMap(){
 	map.setZoom(15.5);
 	map.setCenter([-77.67454147338866,43.08484339838443]);
 
+	//Add geocoder aka searchbar
 	geocoder = new MapboxGeocoder({
 		accessToken: mapboxgl.accessToken,
 		zoom: 14,
@@ -28,11 +30,13 @@ function initMap(){
 	document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 }
 
+//Helper function for searches
 function searchLocation(value){
 	geocoder.clear();
 	geocoder.query(value);
 }
 
+//Helper function for map style changing
 function changeStyle(value){
 	map.setStyle(value);
 }

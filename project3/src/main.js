@@ -4,6 +4,7 @@ import * as fb from "./firebase.js";
 
 let wordList;
 
+//Main Init
 function init(){
 	map.initMap();
 	fb.initFirebase();
@@ -15,7 +16,9 @@ let controls = Object.seal({
 	dark: false
 });
 
+//UI Setup
 function setupUI(){
+	//Read stored style
 	const storedMode = localStorage.getItem("controls.dark");
 	if (storedMode != undefined){
 		if(storedMode == "true"){controls.dark = true;}
@@ -28,12 +31,13 @@ function setupUI(){
 		map.changeStyle('mapbox://styles/mapbox/streets-v11');
 	}
 
-
+	//Override CSS rules
 	let geocoderInput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
 	geocoderInput.classList.add("browser-default");
 	let geocoderSug = document.querySelector(".suggestions");
 	geocoderSug.classList.add("browser-default");
 	
+	//Menu toggle
 	let menuButton = document.querySelector("#menu");
 	let buttons = document.querySelector("#buttonContainer");
 	menuButton.addEventListener('click', () => {
@@ -55,6 +59,7 @@ function setupUI(){
 		}
 	});
 
+	//Hook random button
 	let randButton = document.querySelector("#randomWord");
 	randButton.addEventListener('click', () => {
 		Promise.resolve(fb.getWords()).then((value)=>{
@@ -66,6 +71,8 @@ function setupUI(){
 		});
 	});
 
+	//Modal hook
+	//Grabbed from: https://materializecss.com/modals.html#!
 	let Modalelem = document.querySelector('.modal');
 	let instance = M.Modal.init(Modalelem);
 	let modalContent = document.querySelector(".modal-content");
@@ -73,19 +80,21 @@ function setupUI(){
 	let modalConfirm = document.querySelector(".modal-footer");
 	modalConfirm.style.margin = "0px 0px 24px 0px"
 	
+	//Modal open hook
 	let submitButton = document.querySelector("#submitButton");
 	submitButton.addEventListener('click', () => {
 		instance.open();
 	});
 
+	//Submit button hook, send data to profanity filter
 	let submitButtonDatabase = document.querySelector("#submitButtonDatabase");
 	let submitInput = document.querySelector("#sumbitInput");
 	submitButtonDatabase.addEventListener('click', () => {
 		badWordChecker(submitInput.value);
-		//fb.submitData(submitInput.value);
 		submitInput.value = "";
 	});
 	
+	//Mode toggle hook and store
 	let darkButton = document.querySelector("#darkMode");
 	darkButton.addEventListener('click', () => {
 		if(controls.dark)
@@ -102,9 +111,11 @@ function setupUI(){
 		}
 	});
 
+	//Init the counter
 	updateCounter();
 }
 
+//Check for profanity
 function badWordChecker(value){
 	let url = "https://www.purgomalum.com/service/json?text=";
 	url += value;
@@ -129,6 +140,8 @@ function badWordChecker(value){
 	ajax.downloadFile(url,parsed);
 }
 
+//Helper function to update the counter
+//A little expensive, but it works for now
 function updateCounter()
 {
 	Promise.resolve(fb.getWords()).then((value)=>{

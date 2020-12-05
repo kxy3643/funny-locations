@@ -1,6 +1,6 @@
 let database;
-let number;
 
+//Init Firebase
 function initFirebase(){
     let firebaseConfig = {
         apiKey: "AIzaSyBZIGOVZoVgkz5UwrIBHfv9Sab1vX12UWo",
@@ -19,7 +19,9 @@ function initFirebase(){
     database = firebase.database();
 }
 
+//Get the list of words in array
 async function getWords(){
+    //Wait for the async function to fulfill the promise, then return the data
     return await firebase.database().ref("location").once("value").then((snapshot) => {
         let list = [];
         let obj = snapshot.val();
@@ -31,11 +33,12 @@ async function getWords(){
     });
 }
 
+//Submit the data to database
 function submitData(value){
     let data = {
         name: `${value}`,
     };
-    firebase.database().ref("location").push(data);
+    database().ref("location").push(data);
 }
 
-export {initFirebase, getWords, submitData, number}
+export {initFirebase, getWords, submitData}
